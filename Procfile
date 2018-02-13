@@ -1,0 +1,2 @@
+worker: lib/index.js
+
