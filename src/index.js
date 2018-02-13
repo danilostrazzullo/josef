@@ -17,7 +17,8 @@ const defaults = {
 
 class SlackBot {
   constructor (settings) {
-    this.options = Object.assign({}, defaults, settings)
+    this.settings = settings || {}
+    this.options = Object.assign({}, defaults, this.settings)
     this.web = new WebClient(token)
     this.rtm = new RtmClient(token, {
       dataStore: false,

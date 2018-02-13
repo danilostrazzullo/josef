@@ -8,7 +8,7 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "lib/index.js",
-    "build": "./node_modules/.bin/rimraf lib && ./node_modules/.bin/babel src --out-dir lib"
+    "build": "rimraf lib && babel src --out-dir lib && chmod +x lib/index.js"
   },
   "devDependencies": {
     "standard": "^10.0.3"
