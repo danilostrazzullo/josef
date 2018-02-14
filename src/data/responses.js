@@ -93,4 +93,4 @@ const responses = [
   }
 ]
 
-export { responses }
+export default responses
