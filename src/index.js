@@ -49,13 +49,14 @@ class SlackBot {
         !isFromUser(event, appData.botId) &&
         messageContainsText(event, this.options.triggerWords)
       ) {
+        const response = pickRandom(responses)
         const { color } = this.options
         const message = {
           as_user: true,
           attachments: [
             {
               color,
-              title: pickRandom(responses)
+              title: response.text
             }
           ]
         }
