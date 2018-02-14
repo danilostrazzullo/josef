@@ -42,6 +42,7 @@ class SlackBot {
     })
 
     this.rtm.on(RTM_EVENTS.MESSAGE, (event) => {
+      console.log(event.channel)
       if (
         isMessage(event) &&
         isMessageToChannel(event) &&
@@ -58,6 +59,7 @@ class SlackBot {
             }
           ]
         }
+        console.log(message)
 
         this.web.chat.postMessage(event.channel, '', message)
         console.info(`Posting message to ${event.channel}`)
