@@ -1,6 +1,6 @@
 const isMessage = event => Boolean(event.type === 'message' && event.text)
 
-const isMessageToChannel = message => typeof message.channel === 'string' && message.channel[0] === 'C'
+const isMessageToChannel = message => typeof message.channel === 'string' && (message.channel[0] === 'C' || message.channel[0] === 'G')
 
 const isFromUser = (event, userId) => event.user === userId
 
