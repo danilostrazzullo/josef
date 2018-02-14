@@ -16,4 +16,6 @@ const messageContainsText = (message, keywords) => {
   return false
 }
 
-export { isMessage, isMessageToChannel, isFromUser, messageContainsText }
+const pickRandom = arr => arr[Math.floor(Math.random() * arr.length)]
+
+export { isMessage, isMessageToChannel, isFromUser, messageContainsText, pickRandom }

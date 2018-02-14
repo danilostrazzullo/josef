@@ -2,16 +2,18 @@ import { RtmClient, WebClient, RTM_EVENTS, CLIENT_EVENTS } from '@slack/client'
 
 import {
   isMessage,
-  // isMessageToChannel,
+  isMessageToChannel,
   isFromUser,
-  messageContainsText
+  messageContainsText,
+  pickRandom
 } from './utils'
+import responses from './data/responses'
 
 const token = `xoxb-${process.env.SLACK_TOKEN}`
 const appData = {}
 
 const defaults = {
-  triggerWords: ['josef_help'],
+  triggerWords: ['josef'],
   color: '#4dbdd5'
 }
 
@@ -42,11 +44,22 @@ class SlackBot {
     this.rtm.on(RTM_EVENTS.MESSAGE, (event) => {
       if (
         isMessage(event) &&
-        // isMessageToChannel(event) &&
+        isMessageToChannel(event) &&
         !isFromUser(event, appData.botId) &&
         messageContainsText(event, this.options.triggerWords)
       ) {
-        this.web.chat.postMessage(event.channel, '', 'Food. Now.')
+        const { color } = this.options
+        const message = {
+          as_user: true,
+          attachments: [
+            {
+              color,
+              title: pickRandom(responses)
+            }
+          ]
+        }
+
+        this.web.chat.postMessage(event.channel, '', message)
         console.info(`Posting message to ${event.channel}`)
       }
     })
